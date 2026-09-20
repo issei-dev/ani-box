@@ -1,0 +1,2036 @@
+<!-- Output: html -->
+<!-- File: index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f1">
+  <meta name="color-scheme" content="light">
+  <title>まいにち どうぶつの おうち</title>
+  <style>
+    :root {
+      --bg: #fff8f1;
+      --paper: #ffffff;
+      --ink: #51463f;
+      --muted: #82746b;
+      --pink: #ffe1e9;
+      --rose: #a33c63;
+      --green: #e5f3e9;
+      --green-ink: #326549;
+      --yellow: #fff0bf;
+      --line: #eaded4;
+      --shadow: 0 8px 26px rgb(102 71 49 / 7%);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family:
+        system-ui,
+        -apple-system,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      line-height: 1.65;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      min-height: 56px;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 18px;
+      background: var(--pink);
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    button:hover:not(:disabled) {
+      filter: brightness(0.97);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #8362b6;
+      outline-offset: 3px;
+    }
+
+    button.secondary {
+      background: #f3eee9;
+    }
+
+    button.green {
+      background: var(--green);
+      color: var(--green-ink);
+    }
+
+    button.small {
+      min-height: 44px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+    }
+
+    input {
+      width: 100%;
+      min-height: 52px;
+      padding: 10px 14px;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      color: var(--ink);
+    }
+
+    label {
+      display: block;
+      margin: 12px 0;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 0;
+      font-size: clamp(1rem, 4.3vw, 1.35rem);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+    }
+
+    small,
+    .muted {
+      color: var(--muted);
+    }
+
+    .shell {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 18px 16px 115px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 0.75rem;
+    }
+
+    .wallet {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 9px 15px;
+      border-radius: 30px;
+      background: var(--yellow);
+      white-space: nowrap;
+      font-weight: 800;
+    }
+
+    .card {
+      margin-bottom: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      background: linear-gradient(160deg, #fff, #fff0f1 60%, #f1f7e8);
+    }
+
+    .hero::before {
+      position: absolute;
+      top: 90px;
+      right: -30px;
+      width: 130px;
+      height: 130px;
+      border: 18px solid rgb(255 255 255 / 55%);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    .stars {
+      color: #946500;
+      letter-spacing: 3px;
+    }
+
+    .pet-button {
+      display: block;
+      width: min(100%, 300px);
+      height: 285px;
+      min-height: 0;
+      margin: 0 auto;
+      padding: 0;
+      background: transparent;
+    }
+
+    .pet-button svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 8px rgb(100 67 46 / 9%));
+    }
+
+    .pet-button.bounce svg {
+      animation: bounce 0.45s ease;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0) rotate(0);
+      }
+      40% {
+        transform: translateY(-12px) rotate(-4deg);
+      }
+      70% {
+        transform: translateY(-4px) rotate(4deg);
+      }
+    }
+
+    .speech {
+      position: relative;
+      min-height: 56px;
+      margin: -8px auto 16px;
+      padding: 14px;
+      border-radius: 18px;
+      background: white;
+      font-weight: 700;
+    }
+
+    .progress {
+      height: 13px;
+      margin: 10px auto 5px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #e9dfd7;
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: #eba1b7;
+      transition: width 0.4s;
+    }
+
+    .section-heading,
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .section-heading {
+      margin-bottom: 16px;
+    }
+
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px dashed var(--line);
+    }
+
+    .task-icon {
+      flex: 0 0 40px;
+      font-size: 1.7rem;
+      text-align: center;
+    }
+
+    .task-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-text strong,
+    .task-text small {
+      display: block;
+    }
+
+    .task button {
+      flex-shrink: 0;
+      padding: 10px 14px;
+    }
+
+    .done-badge {
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: var(--green);
+      color: var(--green-ink);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .tile {
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: white;
+      text-align: center;
+    }
+
+    .tile.selected {
+      border: 3px solid #e39ab1;
+      padding: 14px;
+    }
+
+    .tile svg {
+      width: 100%;
+      max-width: 170px;
+      height: 150px;
+    }
+
+    .tile h3 {
+      margin-bottom: 5px;
+    }
+
+    .tile p {
+      margin-bottom: 10px;
+    }
+
+    .tile button {
+      width: 100%;
+    }
+
+    .food-icon {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 3rem;
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .notice {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #fff5d8;
+      font-size: 0.85rem;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      z-index: 5;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+      border-top: 1px solid var(--line);
+      border-radius: 22px 22px 0 0;
+      background: rgb(255 255 255 / 96%);
+      box-shadow: 0 -5px 20px rgb(80 60 40 / 5%);
+    }
+
+    .bottom-nav button {
+      background: transparent;
+    }
+
+    .bottom-nav button.active {
+      background: var(--pink);
+      color: var(--rose);
+    }
+
+    .footer-tools {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .footer-tools p {
+      margin-top: 10px;
+      font-size: 0.75rem;
+    }
+
+    dialog {
+      width: min(92vw, 480px);
+      max-height: 88dvh;
+      padding: 26px;
+      overflow-y: auto;
+      border: 0;
+      border-radius: 26px;
+      background: var(--bg);
+      color: var(--ink);
+      box-shadow: 0 20px 80px rgb(0 0 0 / 20%);
+    }
+
+    dialog::backdrop {
+      background: rgb(62 43 37 / 40%);
+    }
+
+    dialog h2 {
+      text-align: center;
+    }
+
+    .dialog-pet {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+    }
+
+    .dialog-pet svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .close-button {
+      width: 100%;
+      margin-top: 16px;
+      background: #eee7e0;
+    }
+
+    .form-error {
+      min-height: 1.5em;
+      color: #a72f49;
+      font-size: 0.9rem;
+    }
+
+    .log {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 0.88rem;
+      overflow-wrap: anywhere;
+    }
+
+    .log small {
+      display: block;
+    }
+
+    .admin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 20;
+      top: 18px;
+      left: 50%;
+      width: max-content;
+      max-width: 90vw;
+      padding: 13px 20px;
+      border-radius: 18px;
+      background: #51463f;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .toast:empty {
+      display: none;
+    }
+
+    @media (max-width: 380px) {
+      .shell {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .task {
+        gap: 7px;
+      }
+
+      .task-text strong {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <small id="today-label"></small>
+        <h1>どうぶつの おうち 🌷</h1>
+      </div>
+      <div class="wallet" aria-label="もっているポイント">
+        <span aria-hidden="true">🪙</span>
+        <span id="balance">0</span>
+        <small>pt</small>
+      </div>
+    </header>
+
+    <main id="app"></main>
+
+    <footer class="footer-tools">
+      <button class="secondary small" data-action="parent">
+        ⚙ おうちのひと
+      </button>
+      <p>きろくは このブラウザーに ほぞんされます</p>
+    </footer>
+  </div>
+
+  <nav class="bottom-nav" aria-label="メインメニュー">
+    <button data-action="nav" data-page="home">🏠 おうち</button>
+    <button data-action="nav" data-page="friends">🐾 なかま</button>
+    <button data-action="nav" data-page="shop">🛍 おみせ</button>
+  </nav>
+
+  <dialog id="modal" aria-labelledby="modal-title"></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    const STORAGE_KEY = "animal-home-v1";
+    const LOCK_KEY = "animal-home-state-lock";
+
+    const ANIMALS = [
+      { id: "rabbit", name: "うさぎ", color: "#fff5ee", inner: "#f4b5c6" },
+      { id: "cat", name: "ねこ", color: "#f1d3ac", inner: "#eab5af" },
+      { id: "dog", name: "いぬ", color: "#cfaa87", inner: "#ab7b57" },
+      { id: "hamster", name: "ハムスター", color: "#f0c581", inner: "#e7a8a6" }
+    ];
+
+    const TASKS = [
+      { id: "homework", name: "しゅくだい", icon: "✏️" },
+      { id: "cup", name: "コップ・はブラシ", icon: "🪥" },
+      { id: "bottle", name: "すいとう", icon: "🥤" },
+      { id: "letter", name: "おてがみ", icon: "✉️" },
+      { id: "study", name: "おうちの べんきょう", icon: "📖" },
+      { id: "help", name: "おうちの おてつだい", icon: "🧹" }
+    ];
+
+    const FOODS = [
+      { id: "basic", name: "はなまるごはん", icon: "🌼", price: 6, xp: 5 },
+      { id: "happy", name: "にこにこごはん", icon: "🍀", price: 15, xp: 15 },
+      { id: "sparkle", name: "きらきらごはん", icon: "🌟", price: 30, xp: 36 }
+    ];
+
+    const $ = (selector) => document.querySelector(selector);
+    const animalOf = (id) => ANIMALS.find((animal) => animal.id === id);
+    const foodOf = (id) => FOODS.find((food) => food.id === id);
+    const levelOf = (xp) => xp >= 90 ? 3 : xp >= 30 ? 2 : 1;
+
+    let state;
+    let page = "home";
+    let adminUnlocked = false;
+    let reactionTimer;
+    let toastTimer;
+    let busy = false;
+    let ready = false;
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      })[character]);
+    }
+
+    function uid() {
+      if (crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+
+      return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
+
+    function today() {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date());
+
+      const get = (type) => parts.find((part) => part.type === type).value;
+      return `${get("year")}-${get("month")}-${get("day")}`;
+    }
+
+    function displayTime(iso) {
+      return new Intl.DateTimeFormat("ja-JP", {
+        timeZone: "Asia/Tokyo",
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      }).format(new Date(iso));
+    }
+
+    function initialState() {
+      return {
+        version: 1,
+        selected: null,
+        pets: {},
+        inventory: {
+          basic: 0,
+          happy: 0,
+          sparkle: 0
+        },
+        checks: {},
+        ledger: [],
+        events: [],
+        settings: {
+          pin: null,
+          mom: "まま",
+          dad: "とと"
+        }
+      };
+    }
+
+    function loadState() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+
+      if (!raw) {
+        return initialState();
+      }
+
+      const data = JSON.parse(raw);
+
+      if (
+        data.version !== 1 ||
+        !data.pets ||
+        !data.checks ||
+        !data.inventory ||
+        !data.settings ||
+        !Array.isArray(data.ledger) ||
+        !Array.isArray(data.events)
+      ) {
+        throw new Error("保存データの形式を確認できません。");
+      }
+
+      return data;
+    }
+
+    function balanceOf(data = state) {
+      return data.ledger.reduce((total, entry) => total + entry.amount, 0);
+    }
+
+    function addEvent(data, type, detail) {
+      const event = {
+        id: uid(),
+        at: new Date().toISOString(),
+        type,
+        detail
+      };
+
+      data.events.push(event);
+      return event.id;
+    }
+
+    function addPoints(data, amount, reason, reference) {
+      data.ledger.push({
+        id: uid(),
+        at: new Date().toISOString(),
+        amount,
+        reason,
+        reference
+      });
+    }
+
+    function toast(message) {
+      clearTimeout(toastTimer);
+      $("#toast").textContent = message;
+      toastTimer = setTimeout(() => {
+        $("#toast").textContent = "";
+      }, 3500);
+    }
+
+    async function changeState(mutator) {
+      if (busy) {
+        return { ok: false };
+      }
+
+      busy = true;
+
+      const commit = () => {
+        const next = loadState();
+        const result = mutator(next);
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+        state = next;
+        return result;
+      };
+
+      try {
+        let value;
+
+        if (navigator.locks) {
+          value = await navigator.locks.request(LOCK_KEY, commit);
+        } else {
+          value = commit();
+        }
+
+        render();
+        return { ok: true, value };
+      } catch (error) {
+        const message = error instanceof DOMException
+          ? "保存できませんでした。ブラウザーの保存設定や空き容量を確認してください。"
+          : error.message;
+
+        toast(message || "処理できませんでした。");
+        return { ok: false };
+      } finally {
+        busy = false;
+      }
+    }
+
+    function requirePet(data, id) {
+      if (!animalOf(id) || !data.pets[id]) {
+        throw new Error("どうぶつを えらびなおしてね。");
+      }
+
+      return data.pets[id];
+    }
+
+    function requireAdmin() {
+      if (!adminUnlocked) {
+        throw new Error("保護者画面を開き直してください。");
+      }
+    }
+
+    function petSVG(id, level = 1, face = "normal") {
+      const animal = animalOf(id);
+      const dark = "#59483e";
+      let ears = "";
+
+      if (id === "rabbit") {
+        ears = `
+          <ellipse cx="91" cy="65" rx="22" ry="53" fill="${animal.color}" />
+          <ellipse cx="149" cy="65" rx="22" ry="53" fill="${animal.color}" />
+          <ellipse cx="91" cy="62" rx="10" ry="36" fill="${animal.inner}" />
+          <ellipse cx="149" cy="62" rx="10" ry="36" fill="${animal.inner}" />
+        `;
+      } else if (id === "cat") {
+        ears = `
+          <path d="M54 115 L55 42 L106 82 Z" fill="${animal.color}" />
+          <path d="M186 115 L185 42 L134 82 Z" fill="${animal.color}" />
+          <path d="M66 91 L66 61 L88 84 Z" fill="${animal.inner}" />
+          <path d="M174 91 L174 61 L152 84 Z" fill="${animal.inner}" />
+        `;
+      } else if (id === "dog") {
+        ears = `
+          <ellipse cx="52" cy="126" rx="26" ry="57"
+            fill="${animal.inner}" transform="rotate(12 52 126)" />
+          <ellipse cx="188" cy="126" rx="26" ry="57"
+            fill="${animal.inner}" transform="rotate(-12 188 126)" />
+        `;
+      } else {
+        ears = `
+          <circle cx="66" cy="77" r="27" fill="${animal.color}" />
+          <circle cx="174" cy="77" r="27" fill="${animal.color}" />
+          <circle cx="66" cy="77" r="15" fill="${animal.inner}" />
+          <circle cx="174" cy="77" r="15" fill="${animal.inner}" />
+        `;
+      }
+
+      const happy = ["happy", "eat", "joy"].includes(face);
+      const shy = face === "shy";
+
+      const eyes = happy
+        ? `
+          <path d="M78 124 Q89 111 100 124 M140 124 Q151 111 162 124"
+            fill="none" stroke="${dark}" stroke-width="6"
+            stroke-linecap="round" />
+        `
+        : `
+          <ellipse cx="89" cy="${shy ? 128 : 122}" rx="6"
+            ry="${face === "surprise" ? 10 : 8}" fill="${dark}" />
+          <ellipse cx="151" cy="${shy ? 128 : 122}" rx="6"
+            ry="${face === "surprise" ? 10 : 8}" fill="${dark}" />
+          <circle cx="87" cy="119" r="2" fill="white" />
+          <circle cx="149" cy="119" r="2" fill="white" />
+        `;
+
+      let mouth = `
+        <path d="M107 146 Q120 159 133 146"
+          fill="none" stroke="${dark}" stroke-width="4"
+          stroke-linecap="round" />
+      `;
+
+      if (face === "surprise") {
+        mouth = `
+          <ellipse cx="120" cy="151" rx="7" ry="9" fill="${dark}" />
+        `;
+      } else if (face === "eat") {
+        mouth = `
+          <path d="M108 148 Q120 155 132 148"
+            fill="none" stroke="${dark}" stroke-width="4"
+            stroke-linecap="round" />
+          <circle cx="137" cy="151" r="3" fill="#c98a45" />
+        `;
+      } else if (face === "joy") {
+        mouth = `
+          <path d="M105 145 Q120 175 135 145 Z" fill="#a95b69" />
+        `;
+      }
+
+      const ribbon = level >= 2
+        ? `
+          <path d="M119 182 L91 169 Q82 184 93 198 Z" fill="#df8fab" />
+          <path d="M121 182 L149 169 Q158 184 147 198 Z" fill="#df8fab" />
+          <circle cx="120" cy="183" r="8" fill="#b85e83" />
+        `
+        : "";
+
+      const crown = level >= 3
+        ? `
+          <path d="M76 90 Q120 65 164 90"
+            fill="none" stroke="#8fae71" stroke-width="7" />
+          <g fill="#f6aac3" stroke="#fff4da" stroke-width="4">
+            <circle cx="82" cy="84" r="10" />
+            <circle cx="106" cy="76" r="10" />
+            <circle cx="132" cy="76" r="10" />
+            <circle cx="157" cy="84" r="10" />
+          </g>
+          <g fill="#f8d771">
+            <circle cx="82" cy="84" r="3" />
+            <circle cx="106" cy="76" r="3" />
+            <circle cx="132" cy="76" r="3" />
+            <circle cx="157" cy="84" r="3" />
+          </g>
+          <path d="M42 153 L45 143 L48 153 L58 156 L48 159
+            L45 169 L42 159 L32 156 Z" fill="#e5b74f" />
+          <path d="M197 94 L200 84 L203 94 L213 97 L203 100
+            L200 110 L197 100 L187 97 Z" fill="#e5b74f" />
+        `
+        : "";
+
+      const whiskers = id === "cat"
+        ? `
+          <path d="M65 139 L39 135 M65 150 L39 155
+            M175 139 L201 135 M175 150 L201 155"
+            fill="none" stroke="#b18c6b" stroke-width="3"
+            stroke-linecap="round" />
+        `
+        : "";
+
+      return `
+        <svg viewBox="0 0 240 270" xmlns="http://www.w3.org/2000/svg"
+          role="img" aria-label="${animal.name}、レベル${level}">
+          <ellipse cx="120" cy="251" rx="69" ry="11" fill="#e4d4c7" opacity=".5" />
+          <ellipse cx="120" cy="209" rx="59" ry="48" fill="${animal.color}" />
+          <ellipse cx="120" cy="217" rx="35" ry="30" fill="#fffaf1" />
+          <ellipse cx="76" cy="240" rx="24" ry="14" fill="${animal.color}" />
+          <ellipse cx="164" cy="240" rx="24" ry="14" fill="${animal.color}" />
+          ${ears}
+          <ellipse cx="120" cy="127" rx="77" ry="65" fill="${animal.color}" />
+          <ellipse cx="120" cy="151" rx="43" ry="29" fill="#fffaf1" opacity=".85" />
+          <ellipse cx="72" cy="144" rx="${shy ? 18 : 13}" ry="8"
+            fill="#efa3b3" opacity="${shy ? 0.85 : 0.55}" />
+          <ellipse cx="168" cy="144" rx="${shy ? 18 : 13}" ry="8"
+            fill="#efa3b3" opacity="${shy ? 0.85 : 0.55}" />
+          ${eyes}
+          <path d="M113 135 Q120 130 127 135 Q120 144 113 135" fill="#a87977" />
+          ${mouth}
+          ${whiskers}
+          ${ribbon}
+          ${crown}
+        </svg>
+      `;
+    }
+
+    function showModal(title, body, closeLabel = "もどる") {
+      const modal = $("#modal");
+
+      modal.innerHTML = `
+        <h2 id="modal-title">${escapeHTML(title)}</h2>
+        ${body}
+        <button class="close-button" data-action="close">
+          ${escapeHTML(closeLabel)}
+        </button>
+      `;
+
+      if (!modal.open) {
+        modal.showModal();
+      }
+    }
+
+    function closeModal() {
+      $("#modal").close();
+    }
+
+    function welcomeHTML() {
+      return `
+        <section class="card">
+          <h2>さいしょの なかまを えらぼう 🌷</h2>
+          <p>どのこも むりょうで おむかえできるよ。</p>
+          <div class="grid">
+            ${ANIMALS.map((animal) => `
+              <article class="tile">
+                ${petSVG(animal.id)}
+                <h3>${animal.name}</h3>
+                <button data-action="starter" data-id="${animal.id}">
+                  このこに する
+                </button>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function homeHTML() {
+      const id = state.selected;
+      const animal = animalOf(id);
+      const pet = state.pets[id];
+      const level = levelOf(pet.xp);
+      const records = state.checks[today()] || {};
+      const completed = TASKS.filter((task) => records[task.id]).length;
+      const progress = level === 3
+        ? 100
+        : level === 1
+          ? pet.xp / 30 * 100
+          : (pet.xp - 30) / 60 * 100;
+      const remaining = level === 1 ? 30 - pet.xp : 90 - pet.xp;
+
+      return `
+        <section class="card hero">
+          <h2 class="hero-title">
+            ${animal.name}
+            <span class="stars">${"★".repeat(level)}</span>
+          </h2>
+          <button class="pet-button" id="pet-touch" data-action="touch"
+            aria-label="${animal.name}を なでる">
+            ${petSVG(id, level)}
+          </button>
+          <p class="speech" id="speech" aria-live="polite">
+            きょうも あえて うれしいな！
+          </p>
+          <button class="green" data-action="food">
+            🌼 ごはんを あげる
+          </button>
+          <div class="progress" role="progressbar"
+            aria-label="つぎのレベルまで"
+            aria-valuemin="0" aria-valuemax="100"
+            aria-valuenow="${Math.round(progress)}">
+            <span style="width: ${progress}%"></span>
+          </div>
+          <small>
+            ${level === 3
+              ? "さいこうレベル！ これからも なかよし ♡"
+              : `つぎの ★まで あと ${remaining}`}
+          </small>
+        </section>
+
+        <section class="card">
+          <div class="section-heading">
+            <h2>きょうの できた！</h2>
+            <strong>${completed} / 6</strong>
+          </div>
+          ${TASKS.map((task) => {
+            const record = records[task.id];
+
+            return `
+              <div class="task">
+                <span class="task-icon" aria-hidden="true">${task.icon}</span>
+                <div class="task-text">
+                  <strong>${task.name}</strong>
+                  <small>
+                    ${record
+                      ? `${escapeHTML(record.confirmName)}かくにん · ＋3pt`
+                      : "できたら 3ポイント"}
+                  </small>
+                </div>
+                ${record
+                  ? `<span class="done-badge">できた ✓</span>`
+                  : `
+                    <button data-action="check" data-id="${task.id}">
+                      できた！
+                    </button>
+                  `}
+              </div>
+            `;
+          }).join("")}
+          ${completed === 6
+            ? `<p class="notice">🌸 きょうの できた！が いっぱいだね！</p>`
+            : ""}
+        </section>
+      `;
+    }
+
+    function friendsHTML() {
+      return `
+        <section class="card">
+          <h2>なかまたち 🐾</h2>
+          <p class="muted">おうちに いるこを えらべるよ。</p>
+          <div class="grid">
+            ${ANIMALS.map((animal) => {
+              const pet = state.pets[animal.id];
+
+              if (!pet) {
+                return "";
+              }
+
+              const level = levelOf(pet.xp);
+              const selected = state.selected === animal.id;
+
+              return `
+                <article class="tile ${selected ? "selected" : ""}">
+                  ${petSVG(animal.id, level)}
+                  <h3>${animal.name}</h3>
+                  <p class="stars">${"★".repeat(level)}</p>
+                  <button data-action="select" data-id="${animal.id}"
+                    ${selected ? "disabled" : ""}>
+                    ${selected ? "いっしょに いるよ" : "このこを えらぶ"}
+                  </button>
+                </article>
+              `;
+            }).join("")}
+          </div>
+          <p class="notice" style="margin-top: 16px">
+            あたらしい なかまは おみせで おむかえできるよ。
+          </p>
+        </section>
+      `;
+    }
+
+    function shopHTML() {
+      const balance = balanceOf();
+
+      return `
+        <section class="card">
+          <h2>ごはんの おみせ 🌼</h2>
+          <p class="muted">ごはんを あげると どうぶつが そだつよ。</p>
+          <div class="stack">
+            ${FOODS.map((food) => `
+              <article class="tile">
+                <span class="food-icon" aria-hidden="true">${food.icon}</span>
+                <h3>${food.name}</h3>
+                <p>
+                  ${food.price}pt · せいちょう ＋${food.xp}<br>
+                  <small>もっている：${state.inventory[food.id]}こ</small>
+                </p>
+                <button data-action="buy-food" data-id="${food.id}"
+                  ${balance < food.price ? "disabled" : ""}>
+                  ${balance < food.price
+                    ? `あと ${food.price - balance}pt`
+                    : `${food.price}ptで かう`}
+                </button>
+              </article>
+            `).join("")}
+          </div>
+          <p class="muted" style="margin-top: 16px; font-size: 0.8rem">
+            ゲームの中の特別なごはんです。実際の動物用の食事ではありません。
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>あたらしい なかま 🐾</h2>
+          <div class="grid">
+            ${ANIMALS.map((animal) => {
+              const owned = Boolean(state.pets[animal.id]);
+
+              return `
+                <article class="tile">
+                  ${petSVG(animal.id)}
+                  <h3>${animal.name}</h3>
+                  <p>60pt</p>
+                  <button data-action="buy-pet" data-id="${animal.id}"
+                    ${owned || balance < 60 ? "disabled" : ""}>
+                    ${owned
+                      ? "なかまだよ ✓"
+                      : balance < 60
+                        ? `あと ${60 - balance}pt`
+                        : "おむかえする"}
+                  </button>
+                </article>
+              `;
+            }).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function adminHTML() {
+      const checks = Object.entries(state.checks)
+        .flatMap(([date, records]) => {
+          return Object.entries(records).map(([taskId, record]) => ({
+            ...record,
+            date,
+            taskId
+          }));
+        })
+        .sort((a, b) => b.confirmedAt.localeCompare(a.confirmedAt));
+
+      const events = [...state.events].reverse().slice(0, 100);
+      const ledger = [...state.ledger].reverse().slice(0, 100);
+
+      return `
+        <section class="card">
+          <h2>保護者画面</h2>
+          <p class="notice">
+            確認者は子どもの自己申告です。
+            保護者本人の承認・認証を示す記録ではありません。
+            時刻は端末時計をもとに日本時間で表示しています。
+          </p>
+          <div class="admin-actions">
+            <button class="secondary small" data-action="settings">
+              呼び名の設定
+            </button>
+            <button class="secondary small" data-action="pin-change">
+              PINを変更
+            </button>
+            <button class="secondary small" data-action="export">
+              記録を書き出す
+            </button>
+            <button class="secondary small" data-action="lock">
+              保護者画面を閉じる
+            </button>
+          </div>
+
+          <h3>確認記録・新しい順</h3>
+          ${checks.length === 0 ? "<p>まだ記録がありません。</p>" : ""}
+          ${checks.slice(0, 100).map((record) => {
+            const task = TASKS.find((item) => item.id === record.taskId);
+
+            return `
+              <article class="log">
+                <strong>${record.date} / ${task.name}</strong>
+                <small>
+                  できた：${displayTime(record.doneAt)}<br>
+                  確認先の選択：${displayTime(record.confirmedAt)}<br>
+                  申告された確認者：${escapeHTML(record.confirmName)} / ＋3pt
+                </small>
+                <div class="admin-actions" style="margin: 8px 0 0">
+                  <button class="secondary small" data-action="edit-check"
+                    data-date="${record.date}" data-id="${record.taskId}"
+                    data-record="${record.id}">
+                    確認者を訂正
+                  </button>
+                  <button class="secondary small" data-action="undo-check"
+                    data-date="${record.date}" data-id="${record.taskId}"
+                    data-record="${record.id}">
+                    取り消す
+                  </button>
+                </div>
+              </article>
+            `;
+          }).join("")}
+        </section>
+
+        <section class="card">
+          <h2>ポイント履歴</h2>
+          <p>残高：<strong>${balanceOf()}pt</strong></p>
+          ${ledger.length === 0 ? "<p>まだ履歴がありません。</p>" : ""}
+          ${ledger.map((entry) => `
+            <article class="log">
+              <strong>${entry.amount > 0 ? "+" : ""}${entry.amount}pt</strong>
+              ${escapeHTML(entry.reason)}
+              <small>${displayTime(entry.at)}</small>
+            </article>
+          `).join("")}
+        </section>
+
+        <section class="card">
+          <h2>操作・成長・訂正の履歴</h2>
+          ${events.length === 0 ? "<p>まだ履歴がありません。</p>" : ""}
+          ${events.map((event) => `
+            <article class="log">
+              ${escapeHTML(event.detail)}
+              <small>
+                ${displayTime(event.at)} / ${escapeHTML(event.type)}
+              </small>
+            </article>
+          `).join("")}
+          <p class="muted">
+            各一覧は直近100件まで表示します。
+            書き出しには、保存されている全履歴を含みます。
+            この版に取り込み機能はありません。
+          </p>
+        </section>
+      `;
+    }
+
+    function render() {
+      clearTimeout(reactionTimer);
+
+      const date = today();
+      const [year, month, day] = date.split("-");
+      $("#today-label").textContent = `${year}ねん ${Number(month)}がつ ${Number(day)}にち`;
+      $("#balance").textContent = balanceOf();
+
+      if (page === "admin" && adminUnlocked) {
+        $("#app").innerHTML = adminHTML();
+      } else if (!state.selected) {
+        $("#app").innerHTML = welcomeHTML();
+      } else if (page === "friends") {
+        $("#app").innerHTML = friendsHTML();
+      } else if (page === "shop") {
+        $("#app").innerHTML = shopHTML();
+      } else {
+        $("#app").innerHTML = homeHTML();
+      }
+
+      document.querySelectorAll("[data-action='nav']").forEach((button) => {
+        const active = button.dataset.page === page;
+        button.classList.toggle("active", active);
+
+        if (active) {
+          button.setAttribute("aria-current", "page");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function react(face, comment) {
+      if (page !== "home" || !$("#pet-touch")) {
+        return;
+      }
+
+      clearTimeout(reactionTimer);
+
+      const button = $("#pet-touch");
+      const id = state.selected;
+      const level = levelOf(state.pets[id].xp);
+
+      button.innerHTML = petSVG(id, level, face);
+      button.classList.remove("bounce");
+      void button.offsetWidth;
+      button.classList.add("bounce");
+      $("#speech").textContent = comment;
+
+      reactionTimer = setTimeout(() => {
+        const current = $("#pet-touch");
+
+        if (current && state.selected === id) {
+          current.innerHTML = petSVG(id, levelOf(state.pets[id].xp));
+          current.classList.remove("bounce");
+        }
+      }, 2300);
+    }
+
+    function showCheck(taskId) {
+      const task = TASKS.find((item) => item.id === taskId);
+      const date = today();
+      const doneAt = new Date().toISOString();
+
+      if (state.checks[date]?.[taskId]) {
+        toast("きょうは もう できたよ！");
+        return;
+      }
+
+      showModal("おうちのひとに みてもらった？", `
+        <p style="text-align: center">${task.icon} ${task.name}</p>
+        <div class="stack">
+          ${["mom", "dad"].map((who) => `
+            <button data-action="confirm-check" data-id="${taskId}"
+              data-who="${who}" data-date="${date}" data-done="${doneAt}">
+              ${escapeHTML(state.settings[who])}かくにん
+            </button>
+          `).join("")}
+        </div>
+        <p class="muted" style="margin: 14px 0 0; text-align: center">
+          みてもらってから おしてね
+        </p>
+      `, "まだだよ");
+    }
+
+    async function confirmCheck(button) {
+      const { id, who, date, done } = button.dataset;
+      const task = TASKS.find((item) => item.id === id);
+
+      const result = await changeState((data) => {
+        if (date !== today()) {
+          throw new Error("あたらしい ひに なったよ。もういちど おしてね。");
+        }
+
+        if (!["mom", "dad"].includes(who) || !task) {
+          throw new Error("えらびなおしてね。");
+        }
+
+        data.checks[date] ||= {};
+
+        if (data.checks[date][id]) {
+          throw new Error("きょうの ポイントは もらっているよ。");
+        }
+
+        const record = {
+          id: uid(),
+          doneAt: done,
+          confirmedAt: new Date().toISOString(),
+          confirmKey: who,
+          confirmName: data.settings[who]
+        };
+
+        data.checks[date][id] = record;
+        addPoints(data, 3, `${task.name}：できた`, record.id);
+        addEvent(
+          data,
+          "チェック完了",
+          `${date} ${task.name} / 申告された確認者：${record.confirmName}`
+        );
+      });
+
+      if (result.ok) {
+        closeModal();
+        toast("できたね！ ＋3ポイント 🌸");
+        react("joy", "やったね！ がんばったね！");
+      }
+    }
+
+    function showFood() {
+      showModal("どの ごはんに する？", `
+        <p class="muted">
+          ${animalOf(state.selected).name}に あげるよ。
+        </p>
+        <div class="stack">
+          ${FOODS.map((food) => `
+            <button class="green" data-action="choose-food" data-id="${food.id}"
+              ${state.inventory[food.id] === 0 ? "disabled" : ""}>
+              ${food.icon} ${food.name}<br>
+              ${state.inventory[food.id]}こ · せいちょう ＋${food.xp}
+            </button>
+          `).join("")}
+        </div>
+        <p class="muted" style="margin-top: 14px">
+          ごはんは おみせで かえるよ。
+        </p>
+      `);
+    }
+
+    function showFeedConfirmation(foodId) {
+      const food = foodOf(foodId);
+      const petId = state.selected;
+      const maxed = state.pets[petId].xp >= 90;
+
+      showModal(`${food.name}を あげる？`, `
+        <div class="dialog-pet">
+          ${petSVG(petId, levelOf(state.pets[petId].xp), "happy")}
+        </div>
+        <p style="text-align: center">
+          ${maxed
+            ? "もう おおきく なったよ。<br>せいちょうは ふえないけど、ごはんを あげる？"
+            : `せいちょうが ${food.xp} ふえるよ！`}
+        </p>
+        <button style="width: 100%" data-action="feed"
+          data-id="${foodId}" data-pet="${petId}">
+          1こ あげる
+        </button>
+      `);
+    }
+
+    async function feed(button) {
+      const food = foodOf(button.dataset.id);
+      const petId = button.dataset.pet;
+
+      const result = await changeState((data) => {
+        const pet = requirePet(data, petId);
+
+        if (!food || data.inventory[food.id] < 1) {
+          throw new Error("ごはんが ないよ。おみせで えらんでね。");
+        }
+
+        const before = levelOf(pet.xp);
+        const oldXP = pet.xp;
+
+        data.inventory[food.id] -= 1;
+        pet.xp = Math.min(90, pet.xp + food.xp);
+
+        const after = levelOf(pet.xp);
+
+        addEvent(
+          data,
+          "ごはん",
+          `${animalOf(petId).name}に${food.name} / 経験値＋${pet.xp - oldXP}`
+        );
+
+        if (after > before) {
+          addEvent(
+            data,
+            "レベルアップ",
+            `${animalOf(petId).name}：${"★".repeat(before)} → ${"★".repeat(after)}`
+          );
+        }
+
+        return { leveledUp: after > before };
+      });
+
+      if (result.ok) {
+        closeModal();
+        react(
+          result.value.leveledUp ? "joy" : "eat",
+          result.value.leveledUp ? "すてきに なったよ！" : "おいしいね！ ありがとう！"
+        );
+        toast(result.value.leveledUp ? "レベルアップ！ ✨" : "ごはんを あげたよ 🌼");
+      }
+    }
+
+    function showPurchase(kind, id) {
+      const food = kind === "food" ? foodOf(id) : null;
+      const animal = kind === "pet" ? animalOf(id) : null;
+      const name = food ? food.name : animal.name;
+      const price = food ? food.price : 60;
+
+      showModal(`${name} ${food ? "を かう？" : "を おむかえする？"}`, `
+        ${food
+          ? `<div class="food-icon" style="text-align: center">${food.icon}</div>`
+          : `<div class="dialog-pet">${petSVG(id)}</div>`}
+        <p style="text-align: center">
+          ${price}ポイント つかうよ。
+        </p>
+        <button style="width: 100%" data-action="purchase"
+          data-kind="${kind}" data-id="${id}">
+          ${food ? "かう" : "おむかえする"}
+        </button>
+      `);
+    }
+
+    async function purchase(button) {
+      const { kind, id } = button.dataset;
+
+      const result = await changeState((data) => {
+        const food = kind === "food" ? foodOf(id) : null;
+        const animal = kind === "pet" ? animalOf(id) : null;
+
+        if (!food && !animal) {
+          throw new Error("しょうひんを えらびなおしてね。");
+        }
+
+        const price = food ? food.price : 60;
+        const name = food ? food.name : animal.name;
+
+        if (animal && data.pets[id]) {
+          throw new Error("もう なかまに なっているよ。");
+        }
+
+        if (balanceOf(data) < price) {
+          throw new Error("ポイントが たりないよ。");
+        }
+
+        if (food) {
+          data.inventory[id] += 1;
+        } else {
+          data.pets[id] = {
+            xp: 0,
+            welcomedAt: new Date().toISOString()
+          };
+        }
+
+        const reference = addEvent(
+          data,
+          "購入",
+          `${name} / ${price}pt`
+        );
+
+        addPoints(data, -price, `${name}を購入`, reference);
+      });
+
+      if (result.ok) {
+        closeModal();
+        toast(kind === "food" ? "ごはんを かったよ！" : "あたらしい なかまだよ！ 🐾");
+      }
+    }
+
+    function showParent() {
+      if (adminUnlocked) {
+        page = "admin";
+        render();
+        return;
+      }
+
+      const isSetup = !state.settings.pin;
+
+      showModal(isSetup ? "保護者PINを設定" : "保護者PIN", `
+        <p class="notice">
+          ${isSetup
+            ? "最初に保護者の方が4〜8桁の数字を設定してください。"
+            : "設定した4〜8桁の数字を入力してください。"}
+          このPINは端末内の簡易ロックです。安全な本人認証ではありません。
+        </p>
+        <form id="pin-form" data-mode="${isSetup ? "setup" : "login"}">
+          <label>
+            PIN
+            <input name="pin" type="password" inputmode="numeric"
+              pattern="[0-9]{4,8}" minlength="4" maxlength="8"
+              autocomplete="off" required>
+          </label>
+          ${isSetup ? `
+            <label>
+              もう一度入力
+              <input name="confirm" type="password" inputmode="numeric"
+                pattern="[0-9]{4,8}" minlength="4" maxlength="8"
+                autocomplete="off" required>
+            </label>
+          ` : ""}
+          <p id="pin-error" class="form-error" role="alert"></p>
+          <button type="submit" style="width: 100%">
+            ${isSetup ? "設定して開く" : "開く"}
+          </button>
+        </form>
+      `);
+    }
+
+    function showSettings() {
+      requireAdmin();
+
+      showModal("確認する人の呼び名", `
+        <form id="settings-form">
+          <label>
+            1人目の呼び名
+            <input name="mom" maxlength="12"
+              value="${escapeHTML(state.settings.mom)}" required>
+          </label>
+          <label>
+            2人目の呼び名
+            <input name="dad" maxlength="12"
+              value="${escapeHTML(state.settings.dad)}" required>
+          </label>
+          <p class="muted">
+            過去の記録に保存された呼び名は変更しません。
+          </p>
+          <button type="submit" style="width: 100%">保存</button>
+        </form>
+      `);
+    }
+
+    function showPINChange() {
+      requireAdmin();
+
+      showModal("PINを変更", `
+        <form id="pin-form" data-mode="change">
+          <label>
+            新しいPIN
+            <input name="pin" type="password" inputmode="numeric"
+              pattern="[0-9]{4,8}" minlength="4" maxlength="8"
+              autocomplete="off" required>
+          </label>
+          <label>
+            もう一度入力
+            <input name="confirm" type="password" inputmode="numeric"
+              pattern="[0-9]{4,8}" minlength="4" maxlength="8"
+              autocomplete="off" required>
+          </label>
+          <p id="pin-error" class="form-error" role="alert"></p>
+          <button type="submit" style="width: 100%">変更</button>
+        </form>
+      `);
+    }
+
+    function showRecordAction(button, editing) {
+      requireAdmin();
+
+      const { date, id, record } = button.dataset;
+
+      if (editing) {
+        showModal("申告された確認者を訂正", `
+          <p>訂正履歴を残します。ポイントは増減しません。</p>
+          <div class="stack">
+            ${["mom", "dad"].map((who) => `
+              <button data-action="save-check-editor"
+                data-date="${date}" data-id="${id}"
+                data-record="${record}" data-who="${who}">
+                ${escapeHTML(state.settings[who])}
+              </button>
+            `).join("")}
+          </div>
+        `);
+      } else {
+        showModal("チェックを取り消しますか？", `
+          <p>
+            3ポイントを差し引き、取り消し履歴を残します。
+            残高が3ポイント未満の場合は取り消せません。
+          </p>
+          <button style="width: 100%" data-action="confirm-undo"
+            data-date="${date}" data-id="${id}" data-record="${record}">
+            取り消す（−3pt）
+          </button>
+        `);
+      }
+    }
+
+    async function updateRecord(button, editing) {
+      const { date, id, record, who } = button.dataset;
+
+      const result = await changeState((data) => {
+        requireAdmin();
+
+        const existing = data.checks[date]?.[id];
+
+        if (!existing || existing.id !== record) {
+          throw new Error("この記録は変更されています。画面を開き直してください。");
+        }
+
+        const task = TASKS.find((item) => item.id === id);
+
+        if (editing) {
+          if (!["mom", "dad"].includes(who)) {
+            throw new Error("確認者を選び直してください。");
+          }
+
+          const oldName = existing.confirmName;
+          existing.confirmKey = who;
+          existing.confirmName = data.settings[who];
+
+          addEvent(
+            data,
+            "確認者訂正",
+            `保護者画面から訂正：${date} ${task.name} / ` +
+            `${oldName} → ${existing.confirmName} / 記録ID：${record}`
+          );
+        } else {
+          if (balanceOf(data) < 3) {
+            throw new Error("ポイントが使用済みのため取り消せません。残高3pt以上が必要です。");
+          }
+
+          addEvent(
+            data,
+            "チェック取消",
+            `保護者画面から取消：${date} ${task.name} / ` +
+            `申告された確認者：${existing.confirmName} / ` +
+            `できた：${existing.doneAt} / ` +
+            `確認選択：${existing.confirmedAt} / 記録ID：${record}`
+          );
+
+          addPoints(data, -3, `${task.name}：チェック取消`, record);
+          delete data.checks[date][id];
+        }
+      });
+
+      if (result.ok) {
+        closeModal();
+        toast(editing ? "確認者を訂正しました。" : "取り消しました。");
+      }
+    }
+
+    function exportRecords() {
+      requireAdmin();
+
+      const exported = JSON.parse(JSON.stringify(state));
+      delete exported.settings.pin;
+
+      const blob = new Blob(
+        [JSON.stringify({
+          exportedAt: new Date().toISOString(),
+          note: "確認者は子どもの自己申告です。PINは含みません。",
+          data: exported
+        }, null, 2)],
+        { type: "application/json;charset=utf-8" }
+      );
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = `animal-home-records-${today()}.json`;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    async function handleClick(button) {
+      const action = button.dataset.action;
+      const id = button.dataset.id;
+
+      if (action === "close") {
+        closeModal();
+        return;
+      }
+
+      if (action === "nav") {
+        page = button.dataset.page;
+        adminUnlocked = false;
+        closeModal();
+        render();
+        window.scrollTo({ top: 0 });
+        return;
+      }
+
+      if (action === "starter") {
+        const result = await changeState((data) => {
+          if (Object.keys(data.pets).length > 0) {
+            throw new Error("さいしょの なかまは えらんでいるよ。");
+          }
+
+          if (!animalOf(id)) {
+            throw new Error("どうぶつを えらびなおしてね。");
+          }
+
+          data.pets[id] = {
+            xp: 0,
+            welcomedAt: new Date().toISOString()
+          };
+          data.selected = id;
+
+          addEvent(data, "はじめての仲間", `${animalOf(id).name}を無料でお迎え`);
+        });
+
+        if (result.ok) {
+          toast("これから よろしくね！ 🌷");
+          react("happy", "いっしょに あそぼうね！");
+        }
+
+        return;
+      }
+
+      if (action === "touch") {
+        const reactions = [
+          ["happy", "なでてくれて ありがとう！"],
+          ["surprise", "わあっ！ くすぐったい！"],
+          ["shy", "えへへ、うれしいな"],
+          ["joy", "いっしょに いると たのしいね！"]
+        ];
+
+        const [face, comment] = reactions[Math.floor(Math.random() * reactions.length)];
+        react(face, comment);
+        return;
+      }
+
+      if (action === "check") {
+        showCheck(id);
+        return;
+      }
+
+      if (action === "confirm-check") {
+        await confirmCheck(button);
+        return;
+      }
+
+      if (action === "select") {
+        const result = await changeState((data) => {
+          requirePet(data, id);
+          data.selected = id;
+        });
+
+        if (result.ok) {
+          page = "home";
+          render();
+          window.scrollTo({ top: 0 });
+        }
+
+        return;
+      }
+
+      if (action === "food") {
+        showFood();
+        return;
+      }
+
+      if (action === "choose-food") {
+        showFeedConfirmation(id);
+        return;
+      }
+
+      if (action === "feed") {
+        await feed(button);
+        return;
+      }
+
+      if (action === "buy-food" || action === "buy-pet") {
+        showPurchase(action === "buy-food" ? "food" : "pet", id);
+        return;
+      }
+
+      if (action === "purchase") {
+        await purchase(button);
+        return;
+      }
+
+      if (action === "parent") {
+        showParent();
+        return;
+      }
+
+      if (action === "settings") {
+        showSettings();
+        return;
+      }
+
+      if (action === "pin-change") {
+        showPINChange();
+        return;
+      }
+
+      if (action === "export") {
+        exportRecords();
+        return;
+      }
+
+      if (action === "lock") {
+        adminUnlocked = false;
+        page = "home";
+        render();
+        return;
+      }
+
+      if (action === "edit-check" || action === "undo-check") {
+        showRecordAction(button, action === "edit-check");
+        return;
+      }
+
+      if (action === "save-check-editor" || action === "confirm-undo") {
+        await updateRecord(button, action === "save-check-editor");
+      }
+    }
+
+    document.addEventListener("click", async (event) => {
+      const button = event.target.closest("button[data-action]");
+
+      if (!button || button.disabled || busy || !ready) {
+        return;
+      }
+
+      try {
+        await handleClick(button);
+      } catch (error) {
+        toast(error.message || "操作できませんでした。");
+      }
+    });
+
+    document.addEventListener("submit", async (event) => {
+      if (!["pin-form", "settings-form"].includes(event.target.id)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (busy || !ready) {
+        return;
+      }
+
+      const form = event.target;
+      const fields = new FormData(form);
+
+      if (form.id === "pin-form") {
+        const pin = String(fields.get("pin") || "");
+        const confirmation = String(fields.get("confirm") || "");
+        const mode = form.dataset.mode;
+
+        if (!/^\d{4,8}$/.test(pin)) {
+          $("#pin-error").textContent = "4〜8桁の数字で入力してください。";
+          return;
+        }
+
+        if (mode !== "login" && pin !== confirmation) {
+          $("#pin-error").textContent = "PINが一致しません。";
+          return;
+        }
+
+        if (mode === "login") {
+          try {
+            state = loadState();
+          } catch {
+            $("#pin-error").textContent = "保存データを読み込めませんでした。";
+            return;
+          }
+
+          if (pin !== state.settings.pin) {
+            $("#pin-error").textContent = "PINが違います。";
+            return;
+          }
+        } else {
+          const result = await changeState((data) => {
+            if (mode === "setup" && data.settings.pin) {
+              throw new Error("PINは設定済みです。画面を開き直してください。");
+            }
+
+            if (mode === "change") {
+              requireAdmin();
+            }
+
+            data.settings.pin = pin;
+            addEvent(data, "保護者設定", mode === "setup" ? "PINを設定" : "PINを変更");
+          });
+
+          if (!result.ok) {
+            return;
+          }
+        }
+
+        adminUnlocked = true;
+        page = "admin";
+        closeModal();
+        render();
+        window.scrollTo({ top: 0 });
+      }
+
+      if (form.id === "settings-form") {
+        const mom = String(fields.get("mom") || "").trim();
+        const dad = String(fields.get("dad") || "").trim();
+
+        if (!mom || !dad || mom.length > 12 || dad.length > 12) {
+          toast("呼び名は1〜12文字で入力してください。");
+          return;
+        }
+
+        const result = await changeState((data) => {
+          requireAdmin();
+          data.settings.mom = mom;
+          data.settings.dad = dad;
+          addEvent(data, "保護者設定", `確認者の呼び名を変更：${mom} / ${dad}`);
+        });
+
+        if (result.ok) {
+          closeModal();
+          toast("保存しました。");
+        }
+      }
+    });
+
+    window.addEventListener("storage", (event) => {
+      if (event.key !== STORAGE_KEY && event.key !== null) {
+        return;
+      }
+
+      try {
+        state = loadState();
+        adminUnlocked = false;
+
+        if (page === "admin") {
+          page = "home";
+        }
+
+        closeModal();
+        render();
+      } catch {
+        toast("記録を読み込めませんでした。再読み込みしてください。");
+      }
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        adminUnlocked = false;
+
+        if (page === "admin") {
+          page = "home";
+          closeModal();
+        }
+
+        return;
+      }
+
+      if (!ready) {
+        return;
+      }
+
+      try {
+        state = loadState();
+        render();
+      } catch {
+        toast("記録を読み込めませんでした。");
+      }
+    });
+
+    let renderedDate = today();
+
+    setInterval(() => {
+      if (!ready) {
+        return;
+      }
+
+      const date = today();
+
+      if (date !== renderedDate) {
+        renderedDate = date;
+        closeModal();
+        render();
+        toast("あたらしい いちにちだよ 🌷");
+      }
+    }, 15000);
+
+    try {
+      const probeKey = `${STORAGE_KEY}-probe`;
+      localStorage.setItem(probeKey, "ok");
+      localStorage.removeItem(probeKey);
+
+      state = loadState();
+      ready = true;
+      render();
+    } catch {
+      $("#app").innerHTML = `
+        <section class="card">
+          <h2>保存データを利用できません</h2>
+          <p>
+            ブラウザーの保存設定、空き容量、保存データを確認してください。
+            誤って上書きしないよう、アプリを停止しました。
+          </p>
+          <p>
+            ブラウザーデータを削除すると記録も消えるため、
+            既存の記録がある場合は削除する前に確認してください。
+          </p>
+        </section>
+      `;
+    }
+  </script>
+</body>
+</html>
