@@ -1103,13 +1103,13 @@
                 <article class="tile">
                   ${petSVG(animal.id)}
                   <h3>${animal.name}</h3>
-                  <p>60pt</p>
+                  <p>5pt</p>
                   <button data-action="buy-pet" data-id="${animal.id}"
-                    ${owned || balance < 60 ? "disabled" : ""}>
+                    ${owned || balance < 5 ? "disabled" : ""}>
                     ${owned
                       ? "なかまだよ ✓"
-                      : balance < 60
-                        ? `あと ${60 - balance}pt`
+                      : balance < 5
+                        ? `あと ${5 - balance}pt`
                         : "おむかえする"}
                   </button>
                 </article>
